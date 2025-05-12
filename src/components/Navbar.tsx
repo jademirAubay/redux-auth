@@ -1,0 +1,23 @@
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../store';
+import { login, logout } from '../features/auth/authSlice';
+
+const Navbar = () => {
+  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
+  return (
+    <nav>
+      {isAuthenticated ? (
+        <>
+          <span>Bem-vindo, {user?.name}</span>
+          <button onClick={() => dispatch(logout())}>Logout</button>
+        </>
+      ) : (
+        <button onClick={() => dispatch(login({ name: 'Fulano' }))}>Login</button>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
