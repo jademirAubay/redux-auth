@@ -1,13 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../store';
 import { login, logout } from '../features/auth/authSlice';
+import './Navbar.css';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   return (
-    <nav>
+    <nav className='navbar'>
       {isAuthenticated ? (
         <>
           <span>Bem-vindo, {user?.name}</span>
